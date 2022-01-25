@@ -1,43 +1,63 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import { SvgUri } from "react-native-svg";
-import { BASE_URL } from "../../utils/api";
+
+import { fetchPokemonByName } from "../../services/getPokemons";
 import { COLOR_TYPES, WHITE } from "../../theme/colors";
 import { fonts, fontSizes } from "../../theme/fonts";
 
 const CardPokemon = ({ id, namePokemon }) => {
-  const idPokemon = id + 1;
+  const navigation = useNavigation();
   const [pokemon, setPokemon] = useState(null);
-  const [typePokemon, setTypePokemon] = useState(null);
 
   useEffect(() => {
-    fetch(`${BASE_URL}/pokemon/${namePokemon}`)
-      .then((data) => data.json())
-      .then((data) => setPokemon(data));
-
-    fetch(`${BASE_URL}/type/${idPokemon}`)
-      .then((data) => data.json())
-      .then((data) => setTypePokemon(data.name));
+    (async () => {
+      const pokemonData = await fetchPokemonByName(namePokemon);
+      setPokemon(pokemonData);
+    })();
   }, []);
 
   return (
     pokemon && (
-      <View style={[styles.card, { borderColor: COLOR_TYPES[typePokemon] }]}>
+      <View
+        style={[
+          styles.card,
+          { borderColor: COLOR_TYPES[pokemon.types[0].type.name] },
+        ]}
+      >
         <Text
-          style={[styles.id, { color: COLOR_TYPES[typePokemon] }]}
-        >{`#${id}`}</Text>
+          style={[
+            styles.id,
+            { color: COLOR_TYPES[pokemon.types[0].type.name] },
+          ]}
+        >{`#${id + 1}`}</Text>
         <SvgUri
           width={60}
           height={60}
           uri={pokemon.sprites.other.dream_world.front_default}
+          onPress={() =>
+            navigation.navigate("PokemonScreen", {
+              pokemonData: pokemon,
+              namePokemon,
+              type: pokemon.types[0].type.name,
+            })
+          }
         />
         <Text
           style={[
             styles.name,
             {
-              backgroundColor: COLOR_TYPES[typePokemon],
+              backgroundColor: COLOR_TYPES[pokemon.types[0].type.name],
             },
           ]}
+          onPress={() =>
+            navigation.navigate("PokemonScreen", {
+              pokemonData: pokemon,
+              namePokemon,
+              type: pokemon.types[0].type.name,
+            })
+          }
         >
           {namePokemon}
         </Text>

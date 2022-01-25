@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import LogoPokeball from "../../assets/images/svg/LogoPokeball";
+import { SvgUri } from "react-native-svg";
 import TextInputCustom from "../common/TextInputCustom";
 import { fonts, fontSizes } from "../../theme/fonts";
 
@@ -11,7 +11,11 @@ const Header = ({ setDataPokemons }) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <LogoPokeball />
+        <SvgUri
+          width={24}
+          height={32}
+          svgXmlData={"../../assets/images/svg/pokeball.svg"}
+        />
         <Text style={styles.title}>Pokédex</Text>
       </View>
       <TextInputCustom placeholder="Buscar" onSubmit={onSubmit} />
