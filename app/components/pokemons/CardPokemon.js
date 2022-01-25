@@ -3,19 +3,19 @@ import { StyleSheet, Text, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { SvgUri } from "react-native-svg";
 
+// Services or Themes
 import { fetchPokemonByName } from "../../services/getPokemons";
 import { COLOR_TYPES, WHITE } from "../../theme/colors";
 import { fonts, fontSizes } from "../../theme/fonts";
 
 const CardPokemon = ({ id, namePokemon }) => {
+  const idPokemon = id + 1;
   const navigation = useNavigation();
   const [pokemon, setPokemon] = useState(null);
 
   useEffect(() => {
-    (async () => {
-      const pokemonData = await fetchPokemonByName(namePokemon);
-      setPokemon(pokemonData);
-    })();
+    const promisePokemon = Promise.resolve(fetchPokemonByName(namePokemon));
+    promisePokemon.then((pokemon) => setPokemon(pokemon));
   }, []);
 
   return (
@@ -31,15 +31,16 @@ const CardPokemon = ({ id, namePokemon }) => {
             styles.id,
             { color: COLOR_TYPES[pokemon.types[0].type.name] },
           ]}
-        >{`#${id + 1}`}</Text>
+        >{`#${idPokemon}`}</Text>
         <SvgUri
           width={60}
           height={60}
           uri={pokemon.sprites.other.dream_world.front_default}
           onPress={() =>
             navigation.navigate("PokemonScreen", {
-              pokemonData: pokemon,
+              idPokemon,
               namePokemon,
+              imagePoke: pokemon.sprites.other.dream_world.front_default,
               type: pokemon.types[0].type.name,
             })
           }
@@ -53,8 +54,9 @@ const CardPokemon = ({ id, namePokemon }) => {
           ]}
           onPress={() =>
             navigation.navigate("PokemonScreen", {
-              pokemonData: pokemon,
+              idPokemon,
               namePokemon,
+              imagePoke: pokemon.sprites.other.dream_world.front_default,
               type: pokemon.types[0].type.name,
             })
           }
@@ -78,7 +80,6 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     marginBottom: 10,
     borderRadius: 8,
-    overflow: "hidden",
     backgroundColor: "transparent",
   },
   id: {

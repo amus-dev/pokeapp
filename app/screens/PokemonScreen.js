@@ -3,13 +3,15 @@ import React from "react";
 import LayoutPokemon from "../layouts/LayoutPokemon";
 
 const PokemonScreen = ({ route }) => {
-  const { pokemonData, namePokemon, type } = route.params;
+  const { idPokemon, namePokemon, type, imagePoke, pokemonData } = route.params;
 
   return (
     <LayoutPokemon
-      pokemonData={pokemonData}
+      idPokemon={idPokemon}
       namePokemon={namePokemon}
       type={type}
+      imagePoke={imagePoke}
+      pokemonData={pokemonData}
     />
   );
 };

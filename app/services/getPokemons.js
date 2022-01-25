@@ -13,10 +13,3 @@ export const fetchPokemonByName = async (namePokemon) => {
     .catch((error) => console.error("Error:", error))
     .then((response) => response);
 };
-
-// export const fetchPokemonsByType = async (idPokemon) => {
-//   return fetch(`${BASE_URL}/type/${idPokemon}`)
-//     .then((res) => res.json())
-//     .catch((error) => console.error("Error:", error))
-//     .then((response) => response);
-// };

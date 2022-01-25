@@ -1,24 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { StyleSheet, Text, View, SafeAreaView } from "react-native";
+// Components
 import Header from "../components/header/Header";
 import CardPokemon from "../components/pokemons/CardPokemon";
+//Redux
+import { useSelector } from "react-redux";
+// Themes
 import { BACKGROUND } from "../theme/colors";
-import { fetchPokemons } from "../services/getPokemons";
 
 const LayoutHome = () => {
-  const [dataPokemons, setDataPokemons] = useState(null);
-
-  useEffect(() => {
-    (async () => {
-      const pokemons = await fetchPokemons();
-      setDataPokemons(pokemons);
-    })();
-  }, []);
+  const { dataPokemons } = useSelector((state) => state.pokemonReducer);
 
   return (
     <SafeAreaView>
       <View style={styles.layout}>
-        <Header setDataPokemons={setDataPokemons} />
+        <Header />
         <View style={styles.containerCard}>
           {dataPokemons &&
             dataPokemons.map((pokemon, index) => (

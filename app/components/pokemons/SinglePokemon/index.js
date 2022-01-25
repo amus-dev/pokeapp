@@ -1,11 +1,25 @@
 import React, { useEffect } from "react";
 import { View, Text } from "react-native";
-import Header from "./Header";
 
-const SinglePokemon = ({ pokemonData, namePokemon }) => {
+import Header from "./Header";
+import Content from "./Content";
+
+const SinglePokemon = ({
+  idPokemon,
+  namePokemon,
+  type,
+  imagePoke,
+  pokemonData,
+}) => {
   return (
     <View>
-      <Header pokemonData={pokemonData} namePokemon={namePokemon} />
+      <Header
+        idPokemon={idPokemon}
+        namePokemon={namePokemon}
+        type={type}
+        pokemonData={pokemonData}
+      />
+      <Content imagePoke={imagePoke} type={type} />
     </View>
   );
 };

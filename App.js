@@ -1,4 +1,5 @@
 import React from "react";
+import AppLoading from "expo-app-loading";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { NavigationContainer, DarkTheme } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -7,6 +8,8 @@ import {
   Poppins_400Regular,
   Poppins_700Bold,
 } from "@expo-google-fonts/poppins";
+import { Provider } from "react-redux";
+import { Store } from "./app/redux/store";
 
 //Screens
 import HomeScreen from "./app/screens/HomeScreen";
@@ -20,25 +23,27 @@ const App = () => {
   });
 
   if (!poppinsLoaded) {
-    return null;
+    return <AppLoading />;
   } else {
     return (
-      <NavigationContainer theme={DarkTheme}>
-        <SafeAreaProvider>
-          <Stack.Navigator>
-            <Stack.Screen
-              name="HomeScreen"
-              component={HomeScreen}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="PokemonScreen"
-              component={PokemonScreen}
-              options={{ headerShown: false }}
-            />
-          </Stack.Navigator>
-        </SafeAreaProvider>
-      </NavigationContainer>
+      <Provider store={Store}>
+        <NavigationContainer theme={DarkTheme}>
+          <SafeAreaProvider>
+            <Stack.Navigator>
+              <Stack.Screen
+                name="HomeScreen"
+                component={HomeScreen}
+                options={{ headerShown: false }}
+              />
+              <Stack.Screen
+                name="PokemonScreen"
+                component={PokemonScreen}
+                options={{ headerShown: false }}
+              />
+            </Stack.Navigator>
+          </SafeAreaProvider>
+        </NavigationContainer>
+      </Provider>
     );
   }
 };

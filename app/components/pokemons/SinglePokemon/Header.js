@@ -1,17 +1,27 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { SvgUri } from "react-native-svg";
+import { useNavigation } from "@react-navigation/native";
+import { SvgCssUri } from "react-native-svg";
+import resolveAssetSource from "react-native/Libraries/Image/resolveAssetSource";
 
-const Header = ({ namePokemon }) => {
+//Themes
+import { WHITE } from "../../../theme/colors";
+import { fonts, fontSizes } from "../../../theme/fonts";
+
+const Header = ({ idPokemon, namePokemon, type, pokemonData }) => {
+  const navigation = useNavigation();
+  const arrowLeft = require("../../../assets/images/svg/arrow-left.svg");
+  const arrowLeftSVG = resolveAssetSource(arrowLeft);
   return (
     <View style={styles.header}>
-      <SvgUri
-        width={60}
-        height={60}
-        source={require("../../../assets/images/svg/arrow-left.svg")}
+      <SvgCssUri
+        width={30}
+        height={30}
+        uri={arrowLeftSVG.uri}
+        onPress={() => navigation.navigate("HomeScreen")}
       />
-      <Text>{namePokemon}</Text>
-      <Text>Id</Text>
+      <Text style={styles.name}>{namePokemon}</Text>
+      <Text style={styles.id}>{`#${idPokemon}`}</Text>
     </View>
   );
 };
@@ -25,5 +35,17 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     padding: 20,
+    width: "100%",
+  },
+  name: {
+    fontFamily: fonts.bold,
+    fontSize: fontSizes.title,
+    textTransform: "capitalize",
+    color: WHITE,
+  },
+  id: {
+    fontFamily: fonts.bold,
+    fontSize: fontSizes.regular,
+    color: WHITE,
   },
 });
