@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { SvgUri } from "react-native-svg";
 
@@ -9,41 +9,40 @@ import { COLOR_TYPES, WHITE } from "../../theme/colors";
 import { fonts, fontSizes } from "../../theme/fonts";
 
 const CardPokemon = ({ id, namePokemon }) => {
-  const idPokemon = id + 1;
   const navigation = useNavigation();
   const [pokemon, setPokemon] = useState(null);
 
   useEffect(() => {
     const promisePokemon = Promise.resolve(fetchPokemonByName(namePokemon));
     promisePokemon.then((pokemon) => setPokemon(pokemon));
-  }, []);
+  }, [namePokemon]);
 
   return (
     pokemon && (
-      <View
+      <TouchableOpacity
         style={[
           styles.card,
           { borderColor: COLOR_TYPES[pokemon.types[0].type.name] },
         ]}
+        onPress={() =>
+          navigation.navigate("PokemonScreen", {
+            idPokemon: pokemon.id,
+            namePokemon,
+            imagePoke: pokemon.sprites.other.dream_world.front_default,
+            type: pokemon.types[0].type.name,
+          })
+        }
       >
         <Text
           style={[
             styles.id,
             { color: COLOR_TYPES[pokemon.types[0].type.name] },
           ]}
-        >{`#${idPokemon}`}</Text>
+        >{`#${pokemon.id}`}</Text>
         <SvgUri
           width={60}
           height={60}
           uri={pokemon.sprites.other.dream_world.front_default}
-          onPress={() =>
-            navigation.navigate("PokemonScreen", {
-              idPokemon,
-              namePokemon,
-              imagePoke: pokemon.sprites.other.dream_world.front_default,
-              type: pokemon.types[0].type.name,
-            })
-          }
         />
         <Text
           style={[
@@ -52,18 +51,10 @@ const CardPokemon = ({ id, namePokemon }) => {
               backgroundColor: COLOR_TYPES[pokemon.types[0].type.name],
             },
           ]}
-          onPress={() =>
-            navigation.navigate("PokemonScreen", {
-              idPokemon,
-              namePokemon,
-              imagePoke: pokemon.sprites.other.dream_world.front_default,
-              type: pokemon.types[0].type.name,
-            })
-          }
         >
           {namePokemon}
         </Text>
-      </View>
+      </TouchableOpacity>
     )
   );
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { SvgCssUri } from "react-native-svg";
 import resolveAssetSource from "react-native/Libraries/Image/resolveAssetSource";
@@ -14,12 +14,10 @@ const Header = ({ idPokemon, namePokemon, type, pokemonData }) => {
   const arrowLeftSVG = resolveAssetSource(arrowLeft);
   return (
     <View style={styles.header}>
-      <SvgCssUri
-        width={30}
-        height={30}
-        uri={arrowLeftSVG.uri}
-        onPress={() => navigation.navigate("HomeScreen")}
-      />
+      <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")}>
+        <SvgCssUri width={30} height={30} uri={arrowLeftSVG.uri} />
+      </TouchableOpacity>
+
       <Text style={styles.name}>{namePokemon}</Text>
       <Text style={styles.id}>{`#${idPokemon}`}</Text>
     </View>

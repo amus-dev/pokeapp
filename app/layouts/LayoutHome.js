@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, SafeAreaView } from "react-native";
 // Components
 import Header from "../components/header/Header";
 import CardPokemon from "../components/pokemons/CardPokemon";
+import Paginate from "../components/paginate";
 //Redux
 import { useSelector } from "react-redux";
 // Themes
@@ -18,11 +19,10 @@ const LayoutHome = () => {
         <View style={styles.containerCard}>
           {dataPokemons &&
             dataPokemons.map((pokemon, index) => (
-              <CardPokemon namePokemon={pokemon.name} id={index} key={index} />
+              <CardPokemon namePokemon={pokemon.name} key={index} />
             ))}
         </View>
-
-        <Text>paginador</Text>
+        <Paginate />
       </View>
     </SafeAreaView>
   );
