@@ -15,7 +15,7 @@ const LayoutHome = () => {
   return (
     <SafeAreaView>
       <View style={styles.layout}>
-        <Header />
+        {/* <Header /> */}
         <View style={styles.containerCard}>
           {dataPokemons &&
             dataPokemons.map((pokemon, index) => (

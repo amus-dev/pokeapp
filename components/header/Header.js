@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { SvgCssUri } from "react-native-svg";
-import resolveAssetSource from "react-native/Libraries/Image/resolveAssetSource";
+// import resolveAssetSource from "react-native/Libraries/Image/resolveAssetSource";
 import { fonts, fontSizes } from "../../theme/fonts";
 
 const Header = () => {
