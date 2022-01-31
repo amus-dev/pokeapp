@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { View, Text } from "react-native";
+import React from "react";
+import { View } from "react-native";
 
 import Header from "./Header";
 import Content from "./Content";
@@ -9,17 +9,22 @@ const SinglePokemon = ({
   namePokemon,
   type,
   imagePoke,
-  pokemonData,
+  height,
+  weight,
+  move,
+  stats,
 }) => {
   return (
     <View>
-      <Header
-        idPokemon={idPokemon}
-        namePokemon={namePokemon}
+      <Header idPokemon={idPokemon} namePokemon={namePokemon} type={type} />
+      <Content
+        imagePoke={imagePoke}
         type={type}
-        pokemonData={pokemonData}
+        height={height}
+        weight={weight}
+        move={move}
+        stats={stats}
       />
-      <Content imagePoke={imagePoke} type={type} />
     </View>
   );
 };

@@ -8,9 +8,11 @@ const LayoutPokemon = ({
   namePokemon,
   type,
   imagePoke,
-  pokemonData,
+  height,
+  weight,
+  move,
+  stats,
 }) => {
-  const image = { uri: "https://reactjs.org/logo-og.png" };
   return (
     <SafeAreaView>
       <View style={[styles.layout, { backgroundColor: COLOR_TYPES[type] }]}>
@@ -24,7 +26,10 @@ const LayoutPokemon = ({
           namePokemon={namePokemon}
           type={type}
           imagePoke={imagePoke}
-          pokemonData={pokemonData}
+          height={height}
+          weight={weight}
+          move={move}
+          stats={stats}
         />
       </View>
     </SafeAreaView>

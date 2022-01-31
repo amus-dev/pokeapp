@@ -1,56 +1,38 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import * as Progress from "react-native-progress";
-
-import { COLOR_TYPES, MEDIUM_GRAY, DARK_GRAY } from "../../../theme/colors";
+// Utils and themes
+import {
+  setNumberThreeDigits,
+  substrForIndex,
+  converStringToDecimal,
+} from "../../../utils/functions";
+import { COLOR_TYPES } from "../../../theme/colors";
 import { fonts, fontSizes } from "../../../theme/fonts";
 
-const Stats = ({ type }) => {
+const Stats = ({ type, stats }) => {
   return (
     <View style={styles.statsBox}>
       <Text style={[styles.statsTitle, { color: COLOR_TYPES[type] }]}>
         Base Stats
       </Text>
-      <View style={styles.statsRow}>
-        <Text>HP</Text>
-        <Text>039</Text>
-        <Progress.Bar
-          progress={0.39}
-          width={200}
-          height={15}
-          color={COLOR_TYPES[type]}
-        />
-      </View>
-      <View style={styles.statsRow}>
-        <Text>ATK</Text>
-        <Text>052</Text>
-        <Progress.Bar
-          progress={0.52}
-          width={200}
-          height={15}
-          color={COLOR_TYPES[type]}
-        />
-      </View>
-      <View style={styles.statsRow}>
-        <Text>DEF</Text>
-        <Text>043</Text>
-        <Progress.Bar
-          progress={0.43}
-          width={200}
-          height={15}
-          color={COLOR_TYPES[type]}
-        />
-      </View>
-      <View style={styles.statsRow}>
-        <Text>SDEF</Text>
-        <Text>050</Text>
-        <Progress.Bar
-          progress={0.5}
-          width={200}
-          height={15}
-          color={COLOR_TYPES[type]}
-        />
-      </View>
+
+      {stats.map((item) => (
+        <View style={styles.statsRow}>
+          <Text style={styles.labelText}>
+            {substrForIndex(item.stat.name, 2)}
+          </Text>
+          <Text style={styles.labelText}>
+            {setNumberThreeDigits(item.base_stat)}
+          </Text>
+          <Progress.Bar
+            progress={converStringToDecimal(item.base_stat)}
+            width={200}
+            height={15}
+            color={COLOR_TYPES[type]}
+          />
+        </View>
+      ))}
     </View>
   );
 };
@@ -73,5 +55,10 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
     alignItems: "center",
     marginTop: 10,
+  },
+  labelText: {
+    fontSize: fontSizes.small,
+    fontFamily: fonts.regular,
+    textTransform: "capitalize",
   },
 });

@@ -8,7 +8,7 @@ import { fetchPokemonByName } from "../../services/getPokemons";
 import { COLOR_TYPES, WHITE } from "../../theme/colors";
 import { fonts, fontSizes } from "../../theme/fonts";
 
-const CardPokemon = ({ id, namePokemon }) => {
+const CardPokemon = ({ namePokemon }) => {
   const navigation = useNavigation();
   const [pokemon, setPokemon] = useState(null);
 
@@ -30,6 +30,10 @@ const CardPokemon = ({ id, namePokemon }) => {
             namePokemon,
             imagePoke: pokemon.sprites.other.dream_world.front_default,
             type: pokemon.types[0].type.name,
+            height: pokemon.height,
+            weight: pokemon.weight,
+            move: pokemon.moves[0].move.name,
+            stats: pokemon.stats,
           })
         }
       >

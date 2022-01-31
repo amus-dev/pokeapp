@@ -4,21 +4,21 @@ import React from "react";
 import { COLOR_TYPES, MEDIUM_GRAY, DARK_GRAY } from "../../../theme/colors";
 import { fonts, fontSizes } from "../../../theme/fonts";
 
-const About = ({ type }) => {
+const About = ({ type, height, weight, move }) => {
   return (
     <View style={styles.aboutBox}>
       <Text style={[styles.title, { color: COLOR_TYPES[type] }]}>About</Text>
       <View style={[styles.row]}>
         <View style={[styles.column]}>
-          <Text style={[styles.aboutText]}>8,5 kg</Text>
+          <Text style={[styles.aboutText]}>{weight} kg</Text>
           <Text style={[styles.aboutSubText]}>Weight</Text>
         </View>
         <View style={[styles.column]}>
-          <Text style={[styles.aboutText]}>0,6 m</Text>
+          <Text style={[styles.aboutText]}>{height} m</Text>
           <Text style={[styles.aboutSubText]}>Height</Text>
         </View>
         <View style={[styles.column]}>
-          <Text style={[styles.aboutText]}>Mega-Punch</Text>
+          <Text style={[styles.aboutText]}>{move}</Text>
           <Text style={[styles.aboutSubText]}>Moves</Text>
         </View>
       </View>
@@ -59,6 +59,7 @@ const styles = StyleSheet.create({
     fontFamily: fonts.regular,
     fontSize: fontSizes.regular,
     color: DARK_GRAY,
+    textTransform: "capitalize",
   },
   aboutSubText: {
     fontFamily: fonts.regular,

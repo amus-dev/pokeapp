@@ -8,7 +8,7 @@ import Stats from "./Stats";
 import { COLOR_TYPES, WHITE } from "../../../theme/colors";
 import { fonts, fontSizes } from "../../../theme/fonts";
 
-const Content = ({ imagePoke, type }) => {
+const Content = ({ imagePoke, type, height, weight, move, stats }) => {
   return (
     <View style={styles.content}>
       <SvgUri width={180} height={180} uri={imagePoke} style={styles.image} />
@@ -16,8 +16,8 @@ const Content = ({ imagePoke, type }) => {
         <Text style={[styles.type, { backgroundColor: COLOR_TYPES[type] }]}>
           {type}
         </Text>
-        <About type={type} />
-        <Stats type={type} />
+        <About type={type} height={height} weight={weight} move={move} />
+        <Stats type={type} stats={stats} />
       </View>
     </View>
   );
