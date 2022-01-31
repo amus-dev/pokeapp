@@ -1,4 +1,4 @@
-# Préstamos APP
+# Pokedex APP
 
 _Una app pokedex para visualizar los pokemones proporcionados por la api PokeApi_
 
