@@ -1,4 +1,10 @@
-import { StyleSheet, SafeAreaView, ImageBackground, View } from "react-native";
+import {
+  StyleSheet,
+  ScrollView,
+  SafeAreaView,
+  ImageBackground,
+  View,
+} from "react-native";
 import React from "react";
 import SinglePokemon from "../components/pokemons/SinglePokemon";
 import { COLOR_TYPES } from "../theme/colors";
@@ -15,23 +21,25 @@ const LayoutPokemon = ({
 }) => {
   return (
     <SafeAreaView>
-      <View style={[styles.layout, { backgroundColor: COLOR_TYPES[type] }]}>
-        <ImageBackground
-          source={require("../assets/images/png/bg-pokeball.png")}
-          resizeMode="contain"
-          style={styles.imageBackground}
-        />
-        <SinglePokemon
-          idPokemon={idPokemon}
-          namePokemon={namePokemon}
-          type={type}
-          imagePoke={imagePoke}
-          height={height}
-          weight={weight}
-          move={move}
-          stats={stats}
-        />
-      </View>
+      <ScrollView>
+        <View style={[styles.layout, { backgroundColor: COLOR_TYPES[type] }]}>
+          <ImageBackground
+            source={require("../assets/images/png/bg-pokeball.png")}
+            resizeMode="contain"
+            style={styles.imageBackground}
+          />
+          <SinglePokemon
+            idPokemon={idPokemon}
+            namePokemon={namePokemon}
+            type={type}
+            imagePoke={imagePoke}
+            height={height}
+            weight={weight}
+            move={move}
+            stats={stats}
+          />
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, SafeAreaView } from "react-native";
+import { StyleSheet, ScrollView, View, SafeAreaView } from "react-native";
 // Components
 import Header from "../components/header/Header";
 import CardPokemon from "../components/pokemons/CardPokemon";
@@ -14,7 +14,7 @@ const LayoutHome = () => {
 
   return (
     <SafeAreaView>
-      <View style={styles.layout}>
+      <ScrollView style={styles.layout}>
         <Header />
         <View style={styles.containerCard}>
           {dataPokemons &&
@@ -23,7 +23,7 @@ const LayoutHome = () => {
             ))}
         </View>
         <Paginate />
-      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
