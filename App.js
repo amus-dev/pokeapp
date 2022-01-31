@@ -9,11 +9,11 @@ import {
   Poppins_700Bold,
 } from "@expo-google-fonts/poppins";
 import { Provider } from "react-redux";
-import { Store } from "./app/redux/store";
+import { Store } from "./redux/store";
 
 //Screens
-import HomeScreen from "./app/screens/HomeScreen";
-import PokemonScreen from "./app/screens/PokemonScreen";
+import HomeScreen from "./screens/HomeScreen";
+import PokemonScreen from "./screens/PokemonScreen";
 
 const App = () => {
   const Stack = createStackNavigator();
