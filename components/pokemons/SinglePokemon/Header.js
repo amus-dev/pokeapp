@@ -1,8 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import { SvgCssUri } from "react-native-svg";
-//import resolveAssetSource from "react-native/Libraries/Image/resolveAssetSource";
+import ArrowPrev from "../../../assets/images/svg/ArrowPrev";
 
 //Themes
 import { WHITE } from "../../../theme/colors";
@@ -10,12 +9,10 @@ import { fonts, fontSizes } from "../../../theme/fonts";
 
 const Header = ({ idPokemon, namePokemon, type, pokemonData }) => {
   const navigation = useNavigation();
-  // const arrowLeft = require("../../../assets/images/svg/arrow-left.svg");
-  // const arrowLeftSVG = resolveAssetSource(arrowLeft);
   return (
     <View style={styles.header}>
       <TouchableOpacity onPress={() => navigation.navigate("HomeScreen")}>
-        {/* <SvgCssUri width={30} height={30} uri={arrowLeftSVG.uri} /> */}
+        <ArrowPrev width={30} height={30} fill="white" />
       </TouchableOpacity>
 
       <Text style={styles.name}>{namePokemon}</Text>

@@ -1,16 +1,13 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { SvgCssUri } from "react-native-svg";
-// import resolveAssetSource from "react-native/Libraries/Image/resolveAssetSource";
+import LogoPokeball from "../../assets/images/svg/LogoPokeball";
 import { fonts, fontSizes } from "../../theme/fonts";
 
 const Header = () => {
-  const pokeball = require("../../assets/images/svg/pokeball.svg");
-  const pokeballSVG = resolveAssetSource(pokeball);
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <SvgCssUri width={24} height={32} uri={pokeballSVG.uri} />
+        <LogoPokeball width={24} height={32} />
         <Text style={styles.title}>Pokédex</Text>
       </View>
     </View>

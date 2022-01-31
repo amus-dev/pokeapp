@@ -27,7 +27,7 @@ Android: npm run android || yarn android
 
 _Para visualizar la interacción de la APP para IOS y Android, ingrese en el enlace mas abajo y realice un scan QR (debe tener instalado Expo GO en su teléfono_
 
-- [PokeApp](https://expo.dev/@amusdev/pokeapp)
+- [PokeApp](https://snack.expo.dev/@amusdev/github.com-mts4-pokeapp)
 
 ## Construido con 🛠️
 

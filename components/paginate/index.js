@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
-import { SvgCssUri } from "react-native-svg";
-// import resolveAssetSource from "react-native/Libraries/Image/resolveAssetSource";
+import ArrowPrev from "../../assets/images/svg/ArrowPrev";
+import ArrowNext from "../../assets/images/svg/ArrowNext";
 
 //Redux
 import { useDispatch } from "react-redux";
@@ -18,12 +18,6 @@ const Paginate = () => {
   const dispatch = useDispatch();
   const [offSet, setOffSet] = useState(OFFSET);
 
-  //Images SVG
-  // const arrowPrev = require("../../assets/images/svg/arrow-prev.svg");
-  // const arrowPrevSVG = resolveAssetSource(arrowPrev);
-  // const arrowNext = require("../../assets/images/svg/arrow-next.svg");
-  // const arrowNextSVG = resolveAssetSource(arrowNext);
-
   useEffect(() => {
     if (offSet >= 0) {
       const promisePokemons = Promise.resolve(fetchPokemons(offSet));
@@ -37,7 +31,7 @@ const Paginate = () => {
         style={styles.btnContainer}
         onPress={() => setOffSet(offSet - LIMIT)}
       >
-        {/* <SvgCssUri width={20} height={20} uri={arrowPrevSVG.uri} /> */}
+        <ArrowPrev width={20} height={20} />
         <Text style={styles.label}>Atras</Text>
       </TouchableOpacity>
       <View>
@@ -46,7 +40,7 @@ const Paginate = () => {
           onPress={() => setOffSet(offSet + LIMIT)}
         >
           <Text style={styles.label}>Siguiente</Text>
-          {/* <SvgCssUri width={20} height={20} uri={arrowNextSVG.uri} /> */}
+          <ArrowNext width={20} height={20} />
         </TouchableOpacity>
       </View>
     </View>
